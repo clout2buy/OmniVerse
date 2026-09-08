@@ -31,6 +31,11 @@ func _ready() -> void:
 	# `godot -- --solo` hosts immediately (used by tools/check.ps1 and for quick testing).
 	if "--solo" in OS.get_cmdline_user_args():
 		_on_host()
+	# `godot -- --join CODE` joins immediately (testing).
+	var ja := OS.get_cmdline_user_args().find("--join")
+	if ja >= 0 and ja + 1 < OS.get_cmdline_user_args().size():
+		code_edit.text = OS.get_cmdline_user_args()[ja + 1]
+		_on_join()
 	# `godot -- --solo --screenshot out.png` saves a frame after ~1.5s and quits. For Ares to look at its work.
 	var args := OS.get_cmdline_user_args()
 	var si := args.find("--screenshot")
@@ -163,7 +168,7 @@ func _build_lobby() -> void:
 	_refresh_update()
 
 	var hint := Label.new()
-	hint.text = "Friends over the internet need the host to forward UDP port 7777.\nOn the same Wi-Fi, use the LAN code."
+	hint.text = "Hosting opens UDP port 7777 on your router automatically (UPnP).\nIf that fails, forward it manually. Same Wi-Fi: use the LAN code."
 	hint.modulate = Color(1, 1, 1, 0.45)
 	hint.add_theme_font_size_override("font_size", 12)
 	v.add_child(hint)
@@ -183,8 +188,8 @@ func _on_host() -> void:
 
 func _on_join() -> void:
 	Game.player_name = name_edit.text.strip_edges() if name_edit.text.strip_edges() != "" else "Guest"
-	if Net.join(code_edit.text):
-		lobby.hide()
+	# Keep the lobby up until we are actually connected; Net reports progress/failure in the status label.
+	Net.join(code_edit.text)
 
 func _on_code_ready(code: String, lan_code: String) -> void:
 	var text := ""

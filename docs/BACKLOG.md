@@ -60,3 +60,7 @@ Each creature: a `data/forms/<id>.gd`, a `.glb`, four abilities, a role, lore, a
 - [ ] `receive_hit` applies damage on every peer (call_local); switch to authority-applied with health sync if desync shows up.
 - [ ] Replace primitive `Fx` with GPUParticles3D presets.
 - [ ] Unit tests for AbilityRunner targeting (cone, radius, nearest).
+
+## Networking notes (2026-09-08)
+- Hosting now tries UPnP to open UDP 7777 automatically; falls back to a manual-forward message. Joiners get a 12s timeout message.
+- [ ] Relay / NAT punch-through for hosts behind CGNAT or routers without UPnP (Noray, or a tiny relay on a VPS). This is the only way to make "it just works" universal.
