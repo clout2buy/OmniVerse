@@ -232,7 +232,7 @@ def build_voltrix():
 
 
 BUILDERS = {
-    "human": build_human,
+    # "human" now comes from gen_human.py (kept here only for reference: build_human)
     "vantablade": build_vantablade,
     "bulwark": build_bulwark,
     "voltrix": build_voltrix,

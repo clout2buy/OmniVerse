@@ -42,7 +42,7 @@ var dash_stun := 0.0
 var dash_hit: Array = []
 
 var yaw := 0.0
-var pitch := -0.42
+var pitch := -0.33
 var runner: AbilityRunner
 var model: Node3D
 var hud: Hud

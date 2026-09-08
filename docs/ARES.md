@@ -38,7 +38,7 @@ You are building this game slowly, one solid step per session. Quality over quan
 | Arena | `scripts/world/arena.gd` (procedural for now) |
 | Cel shader + outline | `assets/shaders/`, applied via `scripts/world/cel.gd` |
 | Networking, join codes | `scripts/autoload/net.gd`, `scripts/net/join_code.gd` |
-| Models | `assets/models/<form id>.glb` |
+| Models | `assets/models/<form id>.glb` (human from `tools/blender/gen_human.py`, others from `gen_placeholders.py`) |
 | Concept art | `docs/concepts/` |
 
 ## Rules

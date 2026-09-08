@@ -20,7 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Arm" type="SpringArm3D" parent="CamPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.6, 0)
-spring_length = 6.5
+spring_length = 5.5
 margin = 0.25
 
 [node name="Camera" type="Camera3D" parent="CamPivot/Arm"]

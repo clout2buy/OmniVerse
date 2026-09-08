@@ -16,6 +16,8 @@ if ($Models) {
     Write-Host "== Blender: generating placeholder models"
     & $blender -b --factory-startup -P tools/blender/gen_placeholders.py
     if ($LASTEXITCODE -ne 0) { Write-Host "Blender failed"; exit 1 }
+    & $blender -b --factory-startup -P tools/blender/gen_human.py
+    if ($LASTEXITCODE -ne 0) { Write-Host "Blender failed"; exit 1 }
 }
 
 Write-Host "== Godot: import"
