@@ -147,6 +147,21 @@ func _build_lobby() -> void:
 	status_label.modulate = Color(1, 1, 1, 0.8)
 	v.add_child(status_label)
 
+	var urow := HBoxContainer.new()
+	v.add_child(urow)
+	update_label = Label.new()
+	update_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	update_label.modulate = Color(1, 1, 1, 0.6)
+	update_label.add_theme_font_size_override("font_size", 12)
+	urow.add_child(update_label)
+	update_btn = Button.new()
+	update_btn.text = "UPDATE"
+	update_btn.visible = false
+	update_btn.pressed.connect(func(): Updater.apply())
+	urow.add_child(update_btn)
+	Updater.state_changed.connect(_refresh_update)
+	_refresh_update()
+
 	var hint := Label.new()
 	hint.text = "Friends over the internet need the host to forward UDP port 7777.\nOn the same Wi-Fi, use the LAN code."
 	hint.modulate = Color(1, 1, 1, 0.45)
