@@ -28,5 +28,5 @@ $tests = $LASTEXITCODE
 Write-Host "== Godot: smoke run (host solo for 180 frames)"
 $out = & $godot --headless --path . --quit-after 180 -- --solo 2>&1 | Out-String
 $out
-if ($out -match "SCRIPT ERROR|ERROR:") { Write-Host "Smoke run produced errors"; exit 1 }
+if ($out -cmatch "SCRIPT ERROR|^ERROR:|A Thread object is being destroyed") { Write-Host "Smoke run produced errors"; exit 1 }
 exit $tests

@@ -106,7 +106,7 @@ func _upnp_worker() -> void:
 	call_deferred("_upnp_done", ok, msg)
 
 func _upnp_done(ok: bool, msg: String) -> void:
-	if _upnp_thread != null and _upnp_thread.is_started():
+	if _upnp_thread != null and _upnp_thread.is_started() and not is_queued_for_deletion():
 		_upnp_thread.wait_to_finish()
 	upnp_state = "open" if ok else "failed"
 	upnp_message = msg
@@ -122,8 +122,14 @@ func _close_port_upnp() -> void:
 	if upnp.discover(1000, 1, "InternetGatewayDevice") == UPNP.UPNP_RESULT_SUCCESS:
 		upnp.delete_port_mapping(PORT, "UDP")
 
+func _exit_tree() -> void:
+	# Never destroy a running thread; block briefly for UPnP discovery to finish.
+	if _upnp_thread != null and _upnp_thread.is_started():
+		_upnp_thread.wait_to_finish()
+	_close_port_upnp()
+
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_PREDELETE:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_close_port_upnp()
 
 func get_local_ip() -> String:

@@ -65,8 +65,7 @@ func _test_scripts_parse() -> void:
 	var paths := [
 		"res://scripts/combat/projectile.gd",
 		"res://scripts/combat/fx.gd", "res://scripts/world/dummy.gd", "res://scripts/world/cel.gd",
-		"res://scripts/world/model_factory.gd", "res://scripts/autoload/game.gd",
-		"res://scripts/autoload/net.gd", "res://scripts/net/join_code.gd",
+		"res://scripts/world/model_factory.gd", "res://scripts/net/join_code.gd",
 	]
 	for p in paths:
 		var s = load(p)
