@@ -54,3 +54,7 @@ You are building this game slowly, one solid step per session. Quality over quan
 ## Original IP
 
 Ben 10 is the inspiration, not the content. Do not add Ben 10 aliens, names, or the Omnitrix. Invent creatures for the Mutrix.
+
+## Releasing
+
+`.\tools\release.ps1 0.2.0` runs checks, bumps `config/version`, tags `v0.2.0`, pushes. GitHub Actions (`.github/workflows/release.yml`) exports Windows + Linux, builds the Inno Setup installer, and publishes the release. Players see "UPDATE TO v0.2.0" in the lobby on next launch (`scripts/autoload/updater.gd`). Never delete a release that players may be updating from.

@@ -12,6 +12,8 @@ var status_label: Label
 var code_label: Label
 var name_edit: LineEdit
 var code_edit: LineEdit
+var update_label: Label
+var update_btn: Button
 
 func _ready() -> void:
 	add_child(Arena.new())
@@ -150,6 +152,13 @@ func _build_lobby() -> void:
 	hint.modulate = Color(1, 1, 1, 0.45)
 	hint.add_theme_font_size_override("font_size", 12)
 	v.add_child(hint)
+
+func _refresh_update() -> void:
+	update_label.text = Updater.status_text()
+	update_btn.visible = Updater.state == Updater.State.AVAILABLE
+	if Updater.state == Updater.State.AVAILABLE:
+		update_btn.text = "UPDATE TO v%s" % Updater.latest_version
+		update_label.modulate = Color(0.24, 0.95, 0.54)
 
 func _on_host() -> void:
 	Game.player_name = name_edit.text.strip_edges() if name_edit.text.strip_edges() != "" else "Host"
