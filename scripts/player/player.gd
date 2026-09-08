@@ -4,8 +4,8 @@ class_name Player
 extends CharacterBody3D
 
 const MOUSE_SENS := 0.0022
-const PITCH_MIN := -1.2
-const PITCH_MAX := 0.6
+const PITCH_MIN := -1.25
+const PITCH_MAX := 0.35
 const SYNC_INTERVAL := 1.0 / 30.0
 const ACCEL := 40.0
 const RESPAWN_SECONDS := 4.0
@@ -42,7 +42,7 @@ var dash_stun := 0.0
 var dash_hit: Array = []
 
 var yaw := 0.0
-var pitch := -0.2
+var pitch := -0.42
 var runner: AbilityRunner
 var model: Node3D
 var hud: Hud

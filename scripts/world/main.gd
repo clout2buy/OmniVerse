@@ -36,7 +36,15 @@ func _ready() -> void:
 		_screenshot_then_quit(args[si + 1])
 
 func _screenshot_then_quit(path: String) -> void:
-	await get_tree().create_timer(1.5).timeout
+	# Optional `--form <id>` mutates the local player first, to preview a creature.
+	var args := OS.get_cmdline_user_args()
+	var fi := args.find("--form")
+	await get_tree().create_timer(0.3).timeout
+	if fi >= 0 and fi + 1 < args.size():
+		var p := players.get_node_or_null("1")
+		if p != null:
+			p.set_form.rpc(args[fi + 1])
+	await get_tree().create_timer(1.2).timeout
 	await RenderingServer.frame_post_draw
 	var img := get_viewport().get_texture().get_image()
 	img.save_png(path)

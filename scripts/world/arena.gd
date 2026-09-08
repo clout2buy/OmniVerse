@@ -12,8 +12,8 @@ func _ready() -> void:
 	_walls()
 	_cover()
 	Game.spawn_points = [
-		Vector3(-20, 1, -20), Vector3(20, 1, -20), Vector3(-20, 1, 20), Vector3(20, 1, 20),
-		Vector3(0, 1, -24), Vector3(0, 1, 24), Vector3(-24, 1, 0), Vector3(24, 1, 0),
+		Vector3(-16, 1, -16), Vector3(16, 1, -16), Vector3(-16, 1, 16), Vector3(16, 1, 16),
+		Vector3(0, 1, -22), Vector3(0, 1, 22), Vector3(-22, 1, 0), Vector3(22, 1, 0),
 	]
 
 func _environment() -> void:
@@ -28,7 +28,7 @@ func _environment() -> void:
 	sky.sky_material = mat
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.ambient_light_energy = 0.7
+	env.ambient_light_energy = 1.3
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.glow_enabled = true
 	env.glow_intensity = 0.5
@@ -39,7 +39,7 @@ func _environment() -> void:
 
 	var sun := DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-52, 35, 0)
-	sun.light_energy = 1.4
+	sun.light_energy = 1.7
 	sun.light_color = Color(1, 0.96, 0.9)
 	sun.shadow_enabled = true
 	sun.directional_shadow_max_distance = 120
@@ -63,14 +63,14 @@ func _block(pos: Vector3, size: Vector3, color: Color, outline := 0.03) -> Stati
 	return body
 
 func _floor() -> void:
-	_block(Vector3(0, -0.5, 0), Vector3(SIZE, 1, SIZE), Color(0.32, 0.36, 0.42), 0.0)
+	_block(Vector3(0, -0.5, 0), Vector3(SIZE, 1, SIZE), Color(0.42, 0.46, 0.52), 0.0)
 	# Center plate
 	_block(Vector3(0, 0.05, 0), Vector3(12, 0.1, 12), Color(0.22, 0.5, 0.42), 0.0)
 
 func _walls() -> void:
 	var h := SIZE * 0.5
 	var t := 1.0
-	var col := Color(0.2, 0.22, 0.3)
+	var col := Color(0.42, 0.44, 0.56)
 	_block(Vector3(0, WALL_H * 0.5, -h - t * 0.5), Vector3(SIZE + t * 2, WALL_H, t), col)
 	_block(Vector3(0, WALL_H * 0.5, h + t * 0.5), Vector3(SIZE + t * 2, WALL_H, t), col)
 	_block(Vector3(-h - t * 0.5, WALL_H * 0.5, 0), Vector3(t, WALL_H, SIZE), col)

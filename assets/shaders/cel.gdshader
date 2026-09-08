@@ -5,7 +5,7 @@ render_mode cull_back, depth_prepass_alpha;
 
 uniform vec4 albedo : source_color = vec4(1.0);
 uniform float bands : hint_range(1.0, 8.0) = 3.0;
-uniform float shadow_floor : hint_range(0.0, 1.0) = 0.38;
+uniform float shadow_floor : hint_range(0.0, 1.0) = 0.5;
 uniform float rim_strength : hint_range(0.0, 1.0) = 0.2;
 uniform float emission_strength : hint_range(0.0, 4.0) = 0.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
